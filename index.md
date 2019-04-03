@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ## Welcome
+=======
+## Welcome to GitHub Pages
+>>>>>>> parent of 1817d87... Update index.md
 
 You can use the [editor on GitHub](https://github.com/emaqw/practice/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
