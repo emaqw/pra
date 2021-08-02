@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+  <div class="container">
+    <h1>TODO LIST</h1>
+    <div class="listTxt">
+        <input type="text" placeholder="新增待辦事項" class="txt">
+        <a href="#" class="add">+</a>
+    </div>
+
+    <div class="card card_menu">
+        <ul class="card_tab">
+            <li data-num="0" class="active">全部</li>
+            <li data-num="1">待完成</li>
+            <li data-num="2">已完成</li>
+        </ul>
+      <div class="card_content">
+          <ul class="card_list"></ul>
+          <div class="card_footer">
+            <p class="card_undone">0 個待完成項目</p>
+            <a href="#" class="deleteAll">清除已完成項目</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="all.js"></script>
+</body>
+</html>
