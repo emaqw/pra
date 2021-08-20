@@ -23,6 +23,13 @@ function renderData(){
   });
   cardList.innerHTML = str;
   cardUndone.textContent = `${num} 個待完成項目`;
+
+  //tabs 在待完成時＆代辦事項已被勾選，將待辦事項隱藏
+  data.forEach(function(item,index){
+    if(data[index].check && cardTabLi[1].getAttribute("class","active")){
+      document.querySelectorAll(".card_list li")[index].classList.add("hide");
+    };
+  });
 }
 renderData()
 
@@ -36,7 +43,7 @@ add.addEventListener("click",function(){
   tabsDone();
 })
 
-//tabs在已完成時將新增的值隱藏
+//tabs 在已完成時，將新增的值隱藏
 function tabsDone(){
   data.forEach(function(item,index){
     if(!data[index].check && cardTabLi[2].getAttribute("class","active")){
@@ -45,19 +52,24 @@ function tabsDone(){
   });
 }
 
-//點擊input+刪除代辦事項
+//點擊代辦事項
 cardList.addEventListener("click",function(e){
   let num = e.target.getAttribute("data-num");
   
-  if(e.target.getAttribute("type") == ("checkbox") && !e.target.getAttribute("checked")){//點擊 input 新增物件 check
+  //點擊代辦事項 新增屬性 check
+  if(e.target.getAttribute("type") == ("checkbox") && !e.target.getAttribute("checked")){
     data[num].check = true;
     renderData();
   }
-  if(e.target.getAttribute("checked")){//點擊 input 刪除物件 check
+
+  //點擊代辦事項 刪除屬性 check
+  if(e.target.getAttribute("checked")){
     delete data[num].check;
     renderData();
   }
-  if(e.target.getAttribute("class") == ("delete")){//點擊刪除按鈕
+
+  //點擊刪除按鈕
+  if(e.target.getAttribute("class") == ("delete")){
     data.splice(num,1);
     renderData();
   }
@@ -75,19 +87,25 @@ deleteAll.addEventListener("click",function(){
 
 //篩選器
 cardTab.addEventListener("click",function(e){
-  cardTabLi.forEach(function(item,index){//刪除active
+  //刪除 active
+  cardTabLi.forEach(function(item,index){
     cardTabLi[index].removeAttribute("class");
   })
-  e.target.setAttribute("class","active");//新增active
+  //新增 active
+  e.target.setAttribute("class","active");
 
   let str = "";
   data.forEach(function(item,index){
-    if(e.target.getAttribute("data-num") == ("1")){//點擊待完成
+
+    //點擊待完成
+    if(e.target.getAttribute("data-num") == ("1")){
       if(!data[index].check){
         str += `<li><label class="checkbox" for=""><input type="checkbox" data-num="${index}"><span>${item.content}</span></label><a href="#" class="delete"></a></li>`;
       };
     };
-    if(e.target.getAttribute("data-num") == ("2")){//點擊已完成
+
+    //點擊已完成
+    if(e.target.getAttribute("data-num") == ("2")){
       if(data[index].check){
         str += `<li><label class="checkbox" for=""><input type="checkbox" data-num="${index}" checked="checked"><span>${item.content}</span></label><a href="#" class="delete"></a></li>`;
       };
@@ -95,7 +113,8 @@ cardTab.addEventListener("click",function(e){
   });
   cardList.innerHTML  = str;
 
-  data.forEach(function(item,index){//點擊全部
+  //點擊全部
+  data.forEach(function(item,index){
     if(e.target.getAttribute("data-num") == ("0")){
       renderData();    
     };
